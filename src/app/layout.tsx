@@ -45,7 +45,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-alabaster text-slate-custom editorial-bg antialiased">
+      <body className="min-h-full flex flex-col bg-alabaster text-slate-custom editorial-bg islamic-pattern-bg antialiased">
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />

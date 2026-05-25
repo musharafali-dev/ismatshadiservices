@@ -2,47 +2,44 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Menu, X, ShieldAlert, ShieldCheck } from "lucide-react";
+import { Menu, X } from "lucide-react";
+
+const NAV_ITEMS = [
+  { href: "/about-us", label: "About Us" },
+  { href: "/how-it-works", label: "How It Works" },
+  { href: "/membership-plans", label: "Membership Plans" },
+  { href: "/success-stories", label: "Success Stories" },
+  { href: "/islamic-resources", label: "Islamic Resources" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact-us", label: "Contact Us" },
+];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-midnight/90 backdrop-blur-md border-b border-gold/20 px-6 lg:px-16 py-4 transition-all duration-300">
+    <header className="sticky top-0 z-50 bg-midnight/95 backdrop-blur-md border-b border-gold/20 px-6 lg:px-16 py-4 transition-all duration-300 relative overflow-hidden">
+      <div className="islamic-motif-strip absolute left-0 right-0 top-0 h-4 opacity-60 pointer-events-none" />
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        
-        {/* Brand Logo - Playfair Editorial Serif */}
         <Link href="/" className="flex items-center gap-3 group">
-          <span className="serif-heading text-2xl lg:text-3xl text-gold font-light tracking-wide transition-all group-hover:opacity-90">
+          <span className="serif-heading text-2xl lg:text-3xl text-gold font-light tracking-wide transition-all group-hover:opacity-90 mt-2">
             ISMAT
           </span>
           <div className="h-6 w-[0.5px] bg-gold/40"></div>
-          <span className="text-[10px] tracking-[0.3em] font-semibold text-white/80 uppercase mt-1">
+          <span className="text-[10px] tracking-[0.3em] font-semibold text-white/80 uppercase mt-2">
             SHAADI SERVICES
           </span>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-10 text-xs font-light tracking-widest text-white/80 uppercase">
-          <Link href="/about" className="hover:text-gold transition-colors py-1">
-            About the Bureau
-          </Link>
-          <Link href="/profiles" className="hover:text-gold transition-colors py-1">
-            Private Showroom
-          </Link>
-          <Link href="/services" className="hover:text-gold transition-colors py-1">
-            Life Concierge
-          </Link>
-          <Link href="/events" className="hover:text-gold transition-colors py-1">
-            Private Events
-          </Link>
-          <Link href="/blog" className="hover:text-gold transition-colors py-1">
-            Insights
-          </Link>
+        <nav className="hidden xl:flex items-center gap-6 text-[11px] font-light tracking-wider text-white/80 uppercase">
+          {NAV_ITEMS.map((item) => (
+            <Link key={item.href} href={item.href} className="hover:text-gold transition-colors py-1">
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
-        {/* Desktop Action CTAs */}
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-6 mt-2">
           <Link 
             href="/auth/login" 
             className="text-xs font-light tracking-wider text-gold hover:text-gold-hover transition-colors uppercase"
@@ -57,7 +54,6 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
         <button 
           className="lg:hidden text-gold p-1"
           onClick={() => setMobileMenuOpen(prev => !prev)}
@@ -68,45 +64,19 @@ export default function Header() {
 
       </div>
 
-      {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden absolute top-[100%] left-0 w-full bg-midnight border-b border-gold/20 py-8 px-6 space-y-6 flex flex-col items-center animate-fade-in shadow-2xl">
+        <div className="lg:hidden absolute top-[100%] left-0 w-full bg-midnight border-b border-gold/20 py-8 px-6 space-y-6 flex flex-col items-center animate-fade-in shadow-2xl max-h-[80vh] overflow-y-auto">
           <nav className="flex flex-col gap-4 text-center text-xs tracking-widest text-white/80 uppercase font-light w-full">
-            <Link 
-              href="/about" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-2 hover:text-gold transition-colors border-b border-white/5"
-            >
-              About the Bureau
-            </Link>
-            <Link 
-              href="/profiles" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-2 hover:text-gold transition-colors border-b border-white/5"
-            >
-              Private Showroom
-            </Link>
-            <Link 
-              href="/services" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-2 hover:text-gold transition-colors border-b border-white/5"
-            >
-              Life Concierge
-            </Link>
-            <Link 
-              href="/events" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-2 hover:text-gold transition-colors border-b border-white/5"
-            >
-              Private Events
-            </Link>
-            <Link 
-              href="/blog" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-2 hover:text-gold transition-colors"
-            >
-              Insights
-            </Link>
+            {NAV_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2 hover:text-gold transition-colors border-b border-white/5"
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
           
           <div className="flex flex-col gap-4 w-full items-center pt-4">
