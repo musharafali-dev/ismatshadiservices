@@ -1,10 +1,21 @@
 import React from "react";
 import Link from "next/link";
-import { Mail, Shield, CheckCircle } from "lucide-react";
+import { Shield, CheckCircle } from "lucide-react";
+
+const FOOTER_LINKS = [
+  { href: "/about-us", label: "About Us" },
+  { href: "/how-it-works", label: "How It Works" },
+  { href: "/membership-plans", label: "Membership Plans" },
+  { href: "/success-stories", label: "Success Stories" },
+  { href: "/islamic-resources", label: "Islamic Resources" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact-us", label: "Contact Us" },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-midnight border-t border-gold/20 text-white/70 py-16 px-6 lg:px-16 mt-auto">
+    <footer className="bg-midnight border-t border-gold/20 text-white/70 py-16 px-6 lg:px-16 mt-auto relative overflow-hidden">
+      <div className="islamic-motif-strip absolute left-0 right-0 top-0 h-4 opacity-60 pointer-events-none" />
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         
         {/* Logo and Description */}
@@ -51,29 +62,16 @@ export default function Footer() {
         {/* Quick Links */}
         <div className="space-y-4">
           <h4 className="serif-heading text-sm text-gold font-medium uppercase tracking-wider">
-            Matchmaker Registry
+            Quick Links
           </h4>
           <ul className="text-xs font-light space-y-2.5">
-            <li>
-              <Link href="/about" className="hover:text-gold transition-colors">
-                The Halal Commitment
-              </Link>
-            </li>
-            <li>
-              <Link href="/profiles" className="hover:text-gold transition-colors">
-                Private Showroom Gateway
-              </Link>
-            </li>
-            <li>
-              <Link href="/services" className="hover:text-gold transition-colors">
-                Life Concierge Suite
-              </Link>
-            </li>
-            <li>
-              <Link href="/pricing" className="hover:text-gold transition-colors">
-                Membership Curation Tiers
-              </Link>
-            </li>
+            {FOOTER_LINKS.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="hover:text-gold transition-colors">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 

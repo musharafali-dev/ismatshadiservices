@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@100;200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@100;200;300;400;500;600;700;800&family=Noto+Naskh+Arabic:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -6,6 +6,8 @@
   --foreground: #1E293B; /* Manhattan Slate Corporate Base */
   
   --color-midnight: #0F172A;
+  --color-emerald: #0F5132;
+  --color-emerald-soft: #2F855A;
   --color-deepblue: #0B132B;
   --color-gold: #D4AF37;
   --color-gold-hover: #C09E30;
@@ -17,6 +19,8 @@
 
 @theme {
   --color-midnight: var(--color-midnight);
+  --color-emerald: var(--color-emerald);
+  --color-emerald-soft: var(--color-emerald-soft);
   --color-deepblue: var(--color-deepblue);
   --color-gold: var(--color-gold);
   --color-gold-hover: var(--color-gold-hover);
@@ -27,6 +31,7 @@
   
   --font-sans: 'Inter', sans-serif;
   --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-arabic: 'Noto Naskh Arabic', serif;
 }
 
 body {
@@ -43,11 +48,30 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+.arabic-accent {
+  font-family: var(--font-arabic);
+}
+
 /* Texture overlay for that premium print paper feel */
 .editorial-bg {
   background-color: #FAF9F6;
   background-image: radial-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 0);
   background-size: 24px 24px;
+}
+
+.islamic-pattern-bg {
+  background-image:
+    radial-gradient(circle at 2px 2px, rgba(212, 175, 55, 0.14) 1px, transparent 0),
+    linear-gradient(45deg, rgba(15, 81, 50, 0.03) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(15, 81, 50, 0.03) 25%, transparent 25%);
+  background-size: 24px 24px, 32px 32px, 32px 32px;
+}
+
+.islamic-motif-strip {
+  background-image: url("/patterns/islamic-geometry.svg");
+  background-size: 280px 80px;
+  background-repeat: repeat-x;
+  background-position: center;
 }
 
 /* Custom Scrollbar */
